@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -44,7 +45,7 @@ class FakeUserPagingSource : PagingSource<Int, User>() {
         val page = params.key ?: 0
         val pageSize = params.loadSize
 
-        delay(800) // loading hissi
+        delay(1200) // loading hissi
 
         val users = List(pageSize) { index ->
             val id = page * pageSize + index
@@ -109,9 +110,6 @@ fun PagingScreen(
         LazyColumn(
             modifier = Modifier.padding(padding)
         ) {
-
-
-
             // 🔥 ANDROID RESMİ PATTERN
             items(
                 count = lazyPagingItems.itemCount,
@@ -126,7 +124,6 @@ fun PagingScreen(
                     )
                 }
             }
-
             // Sayfa eklenirken
             if (lazyPagingItems.loadState.append is LoadState.Loading) {
                 item {
@@ -142,8 +139,6 @@ fun PagingScreen(
                             .padding(24.dp)
                     )
                     }
-
-
                 }
             }
         }
